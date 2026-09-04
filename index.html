@@ -1,1 +1,6117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#060810">
+<meta name="color-scheme" content="dark">
+<title>NEGM CODE LAB PRO</title>
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --bg:#05070c;
+    --bg2:#080b12;
+    --panel:#0b1019;
+    --panel2:#101722;
+    --panel3:#151d2a;
+    --panel4:#1a2332;
+    --border:#202b3e;
+    --border2:#2a3850;
+    --text:#f6f8ff;
+    --muted:#7f8ba0;
+    --muted2:#5c687b;
+    --primary:#725cff;
+    --primary2:#9a79ff;
+    --success:#20df91;
+    --danger:#ff5270;
+    --warning:#ffbd55;
+    --cyan:#39d9ff;
+    --pink:#ff62c5;
+    --shadow:0 20px 70px rgba(0,0,0,.45);
+    --radius:16px;
+}
+
+html,
+body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(114,92,255,.09),transparent 28%),
+        radial-gradient(circle at 85% 80%,rgba(57,217,255,.05),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    font-family:Cairo,Arial,sans-serif;
+}
+
+body{
+    overscroll-behavior:none;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.97);
+}
+
+::-webkit-scrollbar{
+    width:7px;
+    height:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#263249;
+    border-radius:20px;
+}
+
+.app{
+    width:100%;
+    height:100dvh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+    height:68px;
+    min-height:68px;
+    padding:0 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(7,10,17,.88);
+    border-bottom:1px solid rgba(55,70,96,.45);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    position:relative;
+    z-index:50;
+}
+
+.header:after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-1px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,#725cff,transparent);
+    opacity:.55;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    min-width:0;
+}
+
+.logoIcon{
+    width:43px;
+    height:43px;
+    flex:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    background:
+        linear-gradient(135deg,#684fff,#9c5dff 55%,#4f8cff);
+    box-shadow:
+        0 8px 30px rgba(114,92,255,.35),
+        inset 0 1px 0 rgba(255,255,255,.25);
+    font-size:22px;
+}
+
+.logoText{
+    min-width:0;
+    line-height:1.15;
+}
+
+.logoText strong{
+    display:block;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:.3px;
+}
+
+.logoText span{
+    display:block;
+    margin-top:4px;
+    color:#7d899d;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:1.7px;
+}
+
+.headerActions{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.iconBtn{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:rgba(18,25,38,.9);
+    border:1px solid #253147;
+    color:#fff;
+    font-size:17px;
+    transition:.2s;
+}
+
+.iconBtn:hover{
+    background:#1a2333;
+    border-color:#465679;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.body{
+    flex:1;
+    min-height:0;
+    display:flex;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+    width:285px;
+    min-width:285px;
+    background:
+        linear-gradient(180deg,#090d15,#070a10);
+    border-left:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.sidebarTop{
+    padding:15px 15px 12px;
+    border-bottom:1px solid rgba(37,49,70,.7);
+}
+
+.sidebarTitle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.sidebarTitle strong{
+    font-size:13px;
+    font-weight:900;
+}
+
+.sidebarSub{
+    margin-top:4px;
+    color:#59667a;
+    font-size:8px;
+}
+
+.newProject{
+    width:36px;
+    height:36px;
+    border-radius:11px;
+    background:linear-gradient(135deg,#6d5bff,#916bff);
+    color:white;
+    font-size:21px;
+    box-shadow:0 7px 25px rgba(114,92,255,.25);
+}
+
+.projects{
+    flex:1;
+    overflow:auto;
+    padding:10px;
+}
+
+.project{
+    position:relative;
+    padding:10px;
+    margin-bottom:7px;
+    border-radius:14px;
+    border:1px solid transparent;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.project:hover{
+    background:#101722;
+}
+
+.project.active{
+    background:
+        linear-gradient(135deg,rgba(114,92,255,.16),rgba(114,92,255,.04));
+    border-color:#3c356c;
+    box-shadow:inset 0 0 30px rgba(114,92,255,.04);
+}
+
+.projectIcon{
+    width:39px;
+    height:39px;
+    flex:none;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#121a27;
+    border:1px solid #202b3e;
+}
+
+.projectInfo{
+    min-width:0;
+    flex:1;
+}
+
+.projectName{
+    font-size:11px;
+    font-weight:800;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.projectDate{
+    color:#59667a;
+    font-size:8px;
+    margin-top:3px;
+}
+
+.projectFiles{
+    color:#6c7890;
+    font-size:8px;
+}
+
+.projectDelete{
+    color:#5d697d;
+    background:none;
+    padding:5px;
+    font-size:13px;
+}
+
+.projectDelete:hover{
+    color:var(--danger);
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar{
+    min-height:58px;
+    padding:9px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    background:rgba(12,17,27,.94);
+    border-bottom:1px solid var(--border);
+    overflow:auto;
+    scrollbar-width:none;
+}
+
+.toolbar::-webkit-scrollbar{
+    display:none;
+}
+
+.toolBtn{
+    height:38px;
+    flex:none;
+    padding:0 13px;
+    border-radius:11px;
+    background:#121a27;
+    color:#cbd3e1;
+    border:1px solid #263248;
+    font-size:10px;
+    font-weight:800;
+    transition:.2s;
+}
+
+.toolBtn:hover{
+    background:#192333;
+    border-color:#3b4c68;
+}
+
+.toolBtn.primary{
+    background:linear-gradient(135deg,#6453ff,#8a6cff);
+    border-color:#7969ff;
+    color:white;
+    box-shadow:0 7px 25px rgba(114,92,255,.23);
+}
+
+.toolBtn.green{
+    background:linear-gradient(135deg,#0d2e24,#103d2d);
+    border-color:#205b45;
+    color:#50e5a5;
+}
+
+.toolBtn.ai{
+    background:linear-gradient(135deg,#24153d,#321b50);
+    border-color:#61388a;
+    color:#d4adff;
+}
+
+.toolBtn.red{
+    color:#ff7187;
+}
+
+.spacer{
+    flex:1;
+    min-width:8px;
+}
+
+.projectTitle{
+    min-width:100px;
+    max-width:190px;
+    padding:0 4px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:#b9c3d3;
+    font-size:11px;
+    font-weight:800;
+}
+
+/* =========================================================
+   WORKSPACE
+========================================================= */
+
+.workspace{
+    flex:1;
+    min-height:0;
+    display:flex;
+    overflow:hidden;
+}
+
+/* =========================================================
+   FILES
+========================================================= */
+
+.filesPanel{
+    width:225px;
+    min-width:225px;
+    display:flex;
+    flex-direction:column;
+    background:#080c14;
+    border-left:1px solid var(--border);
+}
+
+.filesHeader{
+    height:46px;
+    min-height:46px;
+    padding:0 11px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+}
+
+.filesHeaderLeft{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.filesHeader strong{
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.8px;
+}
+
+.fileCount{
+    min-width:20px;
+    height:19px;
+    padding:0 5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:7px;
+    background:#161f2d;
+    color:#77849a;
+    font-size:8px;
+}
+
+.fileActions{
+    display:flex;
+    gap:4px;
+}
+
+.smallBtn{
+    width:29px;
+    height:29px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:9px;
+    background:#151d2b;
+    color:#e8ecf5;
+    border:1px solid #29354a;
+    font-size:13px;
+}
+
+.smallBtn:hover{
+    background:#1c2738;
+}
+
+.fileSearch{
+    padding:8px;
+    border-bottom:1px solid rgba(32,43,62,.65);
+}
+
+.fileSearch input{
+    width:100%;
+    height:32px;
+    border-radius:9px;
+    outline:0;
+    border:1px solid #222d40;
+    background:#0b111b;
+    color:white;
+    padding:0 9px;
+    font-size:9px;
+    direction:ltr;
+    text-align:left;
+}
+
+.fileTree{
+    flex:1;
+    overflow:auto;
+    padding:7px;
+}
+
+.file{
+    min-height:35px;
+    padding:0 8px;
+    margin-bottom:2px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#9ca8ba;
+    font-size:10px;
+    cursor:pointer;
+    transition:.15s;
+    position:relative;
+}
+
+.file:hover{
+    background:#111927;
+    color:white;
+}
+
+.file.active{
+    background:
+        linear-gradient(90deg,rgba(114,92,255,.16),rgba(114,92,255,.04));
+    color:white;
+    box-shadow:inset 2px 0 0 #7661ff;
+}
+
+.fileIcon{
+    width:19px;
+    flex:none;
+    text-align:center;
+}
+
+.fileName{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    direction:ltr;
+    text-align:left;
+}
+
+.fileMenu{
+    width:24px;
+    height:24px;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    border-radius:7px;
+    background:#1c2636;
+    color:#aeb9ca;
+}
+
+.file:hover .fileMenu,
+.file.active .fileMenu{
+    display:flex;
+}
+
+.fileMenu:hover{
+    color:white;
+}
+
+/* =========================================================
+   EDITOR
+========================================================= */
+
+.editorArea{
+    flex:1;
+    min-width:0;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    background:#06090f;
+}
+
+.tabs{
+    height:45px;
+    min-height:45px;
+    display:flex;
+    overflow:auto;
+    background:#0a0e16;
+    border-bottom:1px solid var(--border);
+    scrollbar-width:none;
+}
+
+.tabs::-webkit-scrollbar{
+    display:none;
+}
+
+.tab{
+    min-width:125px;
+    max-width:180px;
+    padding:0 11px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#68758a;
+    font-size:9px;
+    border-left:1px solid #1b2535;
+    cursor:pointer;
+    position:relative;
+}
+
+.tab.active{
+    color:white;
+    background:#101620;
+}
+
+.tab.active:after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:2px;
+    background:linear-gradient(90deg,#725cff,#a175ff);
+}
+
+.tabName{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    direction:ltr;
+}
+
+.editor{
+    flex:1;
+    min-height:0;
+    display:flex;
+    position:relative;
+    overflow:hidden;
+}
+
+.lineNumbers{
+    width:47px;
+    min-width:47px;
+    padding-top:14px;
+    background:#070a10;
+    border-left:1px solid #141c29;
+    color:#3f4b5f;
+    font-family:Consolas,Monaco,monospace;
+    font-size:11px;
+    line-height:21px;
+    text-align:center;
+    overflow:hidden;
+    user-select:none;
+}
+
+#code{
+    flex:1;
+    width:100%;
+    height:100%;
+    resize:none;
+    outline:0;
+    border:0;
+    padding:13px 15px;
+    background:
+        linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px),
+        #070a10;
+    background-size:40px 40px;
+    color:#e9edfa;
+    font-family:Consolas,Monaco,"Courier New",monospace;
+    font-size:13px;
+    line-height:21px;
+    direction:ltr;
+    text-align:left;
+    tab-size:2;
+    white-space:pre;
+    overflow:auto;
+    caret-color:#a18aff;
+}
+
+/* =========================================================
+   BOTTOM PANEL
+========================================================= */
+
+.bottomPanel{
+    height:175px;
+    min-height:175px;
+    display:flex;
+    flex-direction:column;
+    background:#080c13;
+    border-top:1px solid var(--border);
+}
+
+.bottomTabs{
+    height:38px;
+    min-height:38px;
+    display:flex;
+    align-items:stretch;
+    border-bottom:1px solid var(--border);
+}
+
+.bottomTab{
+    padding:0 14px;
+    display:flex;
+    align-items:center;
+    color:#647188;
+    font-size:9px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.bottomTab.active{
+    color:white;
+    border-bottom:2px solid #725cff;
+}
+
+.console{
+    flex:1;
+    overflow:auto;
+    padding:9px 12px;
+    font-family:Consolas,Monaco,monospace;
+    font-size:10px;
+    line-height:18px;
+    direction:ltr;
+    text-align:left;
+}
+
+.log{
+    padding:2px 0;
+}
+
+.log.error{
+    color:#ff637b;
+}
+
+.log.success{
+    color:#4fe6a5;
+}
+
+.log.info{
+    color:#62cfff;
+}
+
+.log.warn{
+    color:#ffc25b;
+}
+
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+.previewArea{
+    display:none;
+    flex:1;
+    min-width:0;
+    min-height:0;
+    flex-direction:column;
+    background:#11151d;
+}
+
+.previewToolbar{
+    height:45px;
+    min-height:45px;
+    padding:6px 9px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:#0a0e16;
+    border-bottom:1px solid var(--border);
+}
+
+.previewUrl{
+    flex:1;
+    min-width:0;
+    height:31px;
+    display:flex;
+    align-items:center;
+    padding:0 10px;
+    border:1px solid #242f43;
+    border-radius:9px;
+    background:#080c13;
+    color:#647188;
+    font-family:monospace;
+    font-size:9px;
+    direction:ltr;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+#previewFrame{
+    flex:1;
+    width:100%;
+    height:100%;
+    border:0;
+    background:white;
+}
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+.mobileNav{
+    display:none;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+    background:rgba(0,0,0,.76);
+    backdrop-filter:blur(13px);
+    -webkit-backdrop-filter:blur(13px);
+    z-index:200;
+}
+
+.overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(560px,100%);
+    max-height:91dvh;
+    overflow:auto;
+    border-radius:22px;
+    background:
+        linear-gradient(180deg,#111824,#0b1019);
+    border:1px solid #29364c;
+    box-shadow:0 30px 120px rgba(0,0,0,.7);
+    animation:modalIn .2s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(12px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modalHead{
+    min-height:58px;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+}
+
+.modalHead strong{
+    font-size:13px;
+    font-weight:900;
+}
+
+.close{
+    width:33px;
+    height:33px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    background:#182131;
+    border:1px solid #29374d;
+    color:white;
+    font-size:19px;
+}
+
+.modalBody{
+    padding:17px;
+}
+
+.modalFooter{
+    padding:13px 17px;
+    display:flex;
+    gap:7px;
+    justify-content:flex-end;
+    border-top:1px solid var(--border);
+}
+
+.modalBtn{
+    min-height:39px;
+    padding:0 15px;
+    border-radius:10px;
+    background:#171f2d;
+    color:white;
+    border:1px solid #29364b;
+    font-size:10px;
+    font-weight:800;
+}
+
+.modalBtn.primary{
+    background:linear-gradient(135deg,#6d5aff,#896cff);
+    border-color:#806eff;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:6px;
+    color:#9ca8ba;
+    font-size:9px;
+    font-weight:700;
+}
+
+.input,
+.select,
+.textarea{
+    width:100%;
+    outline:0;
+    border:1px solid #263349;
+    border-radius:11px;
+    background:#080d15;
+    color:white;
+    padding:11px;
+    font-size:10px;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus{
+    border-color:#6657c9;
+    box-shadow:0 0 0 3px rgba(114,92,255,.08);
+}
+
+.textarea{
+    min-height:105px;
+    resize:vertical;
+    direction:ltr;
+    text-align:left;
+    font-family:Consolas,monospace;
+}
+
+.sectionTitle{
+    margin:18px 0 10px;
+    padding-bottom:7px;
+    border-bottom:1px solid #202b3d;
+    color:#dbe2ef;
+    font-size:11px;
+    font-weight:900;
+}
+
+/* =========================================================
+   EMOJI
+========================================================= */
+
+.emojiGrid{
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    gap:6px;
+    margin-top:11px;
+}
+
+.emoji{
+    height:43px;
+    border-radius:10px;
+    background:#151e2c;
+    border:1px solid #243047;
+    font-size:21px;
+}
+
+.emoji:hover{
+    background:#222d40;
+    border-color:#465879;
+}
+
+/* =========================================================
+   ASSETS
+========================================================= */
+
+.assetList{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.asset{
+    min-width:0;
+    border:1px solid #263349;
+    border-radius:12px;
+    overflow:hidden;
+    background:#080d15;
+}
+
+.asset img{
+    width:100%;
+    aspect-ratio:1;
+    display:block;
+    object-fit:cover;
+    background:#111824;
+}
+
+.assetName{
+    padding:7px;
+    color:#a8b2c2;
+    font-size:8px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    direction:ltr;
+    text-align:left;
+}
+
+/* =========================================================
+   AI STATUS
+========================================================= */
+
+.aiStatus{
+    display:none;
+    margin-top:10px;
+    padding:11px;
+    border-radius:11px;
+    background:#0c1420;
+    border:1px solid #26364d;
+    color:#a9b5c7;
+    font-size:9px;
+    line-height:18px;
+}
+
+.aiProgress{
+    height:5px;
+    overflow:hidden;
+    border-radius:20px;
+    background:#182231;
+    margin-top:9px;
+}
+
+.aiProgressBar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#725cff,#b278ff,#39d9ff);
+    transition:.25s;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+    padding:34px 12px;
+    text-align:center;
+    color:#58657a;
+    font-size:9px;
+}
+
+.emptyIcon{
+    margin-bottom:8px;
+    font-size:31px;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    z-index:500;
+    max-width:90%;
+    padding:11px 16px;
+    border-radius:12px;
+    background:#151e2c;
+    border:1px solid #31405a;
+    color:white;
+    font-size:10px;
+    white-space:nowrap;
+    box-shadow:0 15px 50px rgba(0,0,0,.5);
+    opacity:0;
+    pointer-events:none;
+    transform:translate(-50%,20px);
+    transition:.25s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================================================
+   CONTEXT MENU
+========================================================= */
+
+.contextMenu{
+    position:fixed;
+    display:none;
+    min-width:170px;
+    padding:6px;
+    z-index:700;
+    background:#111925;
+    border:1px solid #304058;
+    border-radius:13px;
+    box-shadow:0 20px 70px rgba(0,0,0,.65);
+}
+
+.contextMenu.show{
+    display:block;
+}
+
+.contextItem{
+    width:100%;
+    height:35px;
+    padding:0 10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border-radius:8px;
+    background:none;
+    color:#c5cedc;
+    font-size:9px;
+    text-align:right;
+}
+
+.contextItem:hover{
+    background:#1a2535;
+    color:white;
+}
+
+.contextItem.danger{
+    color:#ff6c83;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .sidebar{
+        width:245px;
+        min-width:245px;
+    }
+
+    .filesPanel{
+        width:190px;
+        min-width:190px;
+    }
+
+    .main.previewMode .editorArea{
+        display:flex;
+    }
+
+    .main.previewMode .previewArea{
+        display:flex;
+    }
+}
+
+@media(max-width:850px){
+
+    .header{
+        height:60px;
+        min-height:60px;
+        padding:0 11px;
+    }
+
+    .logoIcon{
+        width:39px;
+        height:39px;
+        border-radius:12px;
+        font-size:19px;
+    }
+
+    .logoText strong{
+        font-size:13px;
+    }
+
+    .logoText span{
+        display:none;
+    }
+
+    .headerActions{
+        gap:5px;
+    }
+
+    .iconBtn{
+        width:36px;
+        height:36px;
+        border-radius:10px;
+        font-size:15px;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+    .filesPanel{
+        display:none;
+    }
+
+    .toolbar{
+        min-height:52px;
+        padding:7px;
+    }
+
+    .toolBtn{
+        height:36px;
+        padding:0 10px;
+    }
+
+    .projectTitle{
+        display:none;
+    }
+
+    .bottomPanel{
+        height:130px;
+        min-height:130px;
+    }
+
+    .mobileNav{
+        height:61px;
+        min-height:61px;
+        display:flex;
+        background:#090d15;
+        border-top:1px solid var(--border);
+        z-index:80;
+        padding-bottom:env(safe-area-inset-bottom);
+    }
+
+    .mobileNav button{
+        flex:1;
+        min-width:0;
+        background:none;
+        color:#69758a;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:1px;
+        font-size:8px;
+        font-weight:700;
+    }
+
+    .mobileNav button.active{
+        color:#a193ff;
+    }
+
+    .mobileNav span{
+        font-size:18px;
+        line-height:22px;
+    }
+
+    .emojiGrid{
+        grid-template-columns:repeat(7,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .assetList{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .modal{
+        border-radius:18px;
+    }
+
+    .modalBody{
+        padding:14px;
+    }
+
+    .editor{
+        min-width:0;
+    }
+
+    .lineNumbers{
+        width:39px;
+        min-width:39px;
+        font-size:10px;
+    }
+
+    #code{
+        padding:12px;
+        font-size:12px;
+    }
+}
+
+/* =========================================================
+   DESKTOP PREVIEW
+========================================================= */
+
+@media(min-width:1001px){
+
+    .main.previewMode .editorArea{
+        display:flex;
+        width:50%;
+    }
+
+    .main.previewMode .previewArea{
+        display:flex;
+        width:50%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ⚡
+        </div>
+
+        <div class="logoText">
+            <strong>NEGM CODE LAB PRO</strong>
+            <span>WEB DEVELOPMENT STUDIO</span>
+        </div>
+
+    </div>
+
+    <div class="headerActions">
+
+        <button class="iconBtn" onclick="openEmoji()">
+            😀
+        </button>
+
+        <button class="iconBtn" onclick="openAI()">
+            ✨
+        </button>
+
+        <button class="iconBtn" onclick="openSettings()">
+            ⚙️
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="body">
+
+
+<aside class="sidebar">
+
+    <div class="sidebarTop">
+
+        <div class="sidebarTitle">
+
+            <strong>
+                📁 مشاريعي
+            </strong>
+
+            <button
+                class="newProject"
+                onclick="newProject()"
+            >
+                +
+            </button>
+
+        </div>
+
+        <div class="sidebarSub">
+            كل مواقعك ومشاريعك محفوظة هنا
+        </div>
+
+    </div>
+
+    <div
+        class="projects"
+        id="projects"
+    ></div>
+
+</aside>
+
+
+<main
+    class="main"
+    id="main"
+>
+
+
+<div class="toolbar">
+
+    <div
+        class="projectTitle"
+        id="projectTitle"
+    >
+        مشروع جديد
+    </div>
+
+    <button
+        class="toolBtn primary"
+        onclick="runProject()"
+    >
+        ▶ اختبار
+    </button>
+
+    <button
+        class="toolBtn green"
+        onclick="saveProject()"
+    >
+        💾 حفظ
+    </button>
+
+    <button
+        class="toolBtn"
+        onclick="openFilesUpload()"
+    >
+        📁 رفع
+    </button>
+
+    <button
+        class="toolBtn"
+        onclick="openAssets()"
+    >
+        🖼️ الصور
+    </button>
+
+    <button
+        class="toolBtn"
+        onclick="openEmoji()"
+    >
+        😀 Emoji
+    </button>
+
+    <button
+        class="toolBtn ai"
+        onclick="openAI()"
+    >
+        ✨ AI
+    </button>
+
+    <div class="spacer"></div>
+
+    <button
+        class="toolBtn"
+        onclick="togglePreview()"
+    >
+        🖥️ Preview
+    </button>
+
+</div>
+
+
+<div class="workspace">
+
+
+<section class="filesPanel">
+
+    <div class="filesHeader">
+
+        <div class="filesHeaderLeft">
+
+            <strong>
+                FILES
+            </strong>
+
+            <div
+                class="fileCount"
+                id="fileCount"
+            >
+                0
+            </div>
+
+        </div>
+
+        <div class="fileActions">
+
+            <button
+                class="smallBtn"
+                onclick="createFile()"
+                title="ملف جديد"
+            >
+                ＋
+            </button>
+
+            <button
+                class="smallBtn"
+                onclick="openFilesUpload()"
+                title="رفع"
+            >
+                ↑
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="fileSearch">
+
+        <input
+            id="fileSearch"
+            placeholder="Search files..."
+            oninput="renderFiles()"
+        >
+
+    </div>
+
+    <div
+        class="fileTree"
+        id="fileTree"
+    ></div>
+
+</section>
+
+
+<section class="editorArea">
+
+    <div
+        class="tabs"
+        id="tabs"
+    ></div>
+
+    <div class="editor">
+
+        <div
+            class="lineNumbers"
+            id="lineNumbers"
+        >
+            1
+        </div>
+
+        <textarea
+            id="code"
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="off"
+            autocorrect="off"
+            oninput="codeChanged()"
+            onscroll="syncEditorScroll()"
+            onkeydown="editorKeydown(event)"
+        ></textarea>
+
+    </div>
+
+
+    <div class="bottomPanel">
+
+        <div class="bottomTabs">
+
+            <div
+                class="bottomTab active"
+                onclick="showBottom('console',this)"
+            >
+                CONSOLE
+            </div>
+
+            <div
+                class="bottomTab"
+                onclick="showBottom('output',this)"
+            >
+                OUTPUT
+            </div>
+
+        </div>
+
+        <div
+            class="console"
+            id="console"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="previewArea"
+    id="previewArea"
+>
+
+    <div class="previewToolbar">
+
+        <button
+            class="smallBtn"
+            onclick="runProject()"
+        >
+            ↻
+        </button>
+
+        <div
+            class="previewUrl"
+            id="previewUrl"
+        >
+            preview://negm-code-lab/site
+        </div>
+
+    </div>
+
+    <iframe
+        id="previewFrame"
+        sandbox="allow-scripts allow-forms allow-modals allow-popups allow-downloads"
+    ></iframe>
+
+</section>
+
+
+</div>
+
+</main>
+
+</div>
+
+
+<nav class="mobileNav">
+
+    <button
+        class="active"
+        onclick="mobileEditor()"
+        id="navCode"
+    >
+        <span>💻</span>
+        كود
+    </button>
+
+    <button
+        onclick="runProject();mobilePreview()"
+        id="navRun"
+    >
+        <span>▶️</span>
+        تشغيل
+    </button>
+
+    <button
+        onclick="openFilesManager()"
+        id="navFiles"
+    >
+        <span>📁</span>
+        الملفات
+    </button>
+
+    <button
+        onclick="openAssets()"
+        id="navAssets"
+    >
+        <span>🖼️</span>
+        الصور
+    </button>
+
+    <button
+        onclick="openAI()"
+        id="navAI"
+    >
+        <span>✨</span>
+        AI
+    </button>
+
+</nav>
+
+</div>
+
+
+<!-- =====================================================
+     NEW PROJECT
+===================================================== -->
+
+<div
+    class="overlay"
+    id="newProjectModal"
+>
+
+<div class="modal">
+
+    <div class="modalHead">
+
+        <strong>
+            🚀 مشروع جديد
+        </strong>
+
+        <button
+            class="close"
+            onclick="closeModal('newProjectModal')"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="modalBody">
+
+        <div class="field">
+
+            <label>
+                اسم المشروع
+            </label>
+
+            <input
+                id="newProjectName"
+                class="input"
+                placeholder="مثلاً موقع مطعم"
+            >
+
+        </div>
+
+    </div>
+
+    <div class="modalFooter">
+
+        <button
+            class="modalBtn"
+            onclick="closeModal('newProjectModal')"
+        >
+            إلغاء
+        </button>
+
+        <button
+            class="modalBtn primary"
+            onclick="createProject()"
+        >
+            إنشاء
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FILE CREATE / RENAME
+===================================================== -->
+
+<div
+    class="overlay"
+    id="fileModal"
+>
+
+<div class="modal">
+
+    <div class="modalHead">
+
+        <strong id="fileModalTitle">
+            📄 ملف جديد
+        </strong>
+
+        <button
+            class="close"
+            onclick="closeModal('fileModal')"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="modalBody">
+
+        <div class="field">
+
+            <label>
+                اسم / مسار الملف
+            </label>
+
+            <input
+                id="newFileName"
+                class="input"
+                placeholder="مثلاً pages/about.html"
+                dir="ltr"
+            >
+
+        </div>
+
+        <div
+            id="renameHint"
+            style="
+                display:none;
+                color:#6f7c91;
+                font-size:9px;
+                line-height:17px;
+            "
+        >
+            يمكنك تغيير اسم الملف أو امتداده.
+            مثال: index.html ←→ home.html
+        </div>
+
+    </div>
+
+    <div class="modalFooter">
+
+        <button
+            class="modalBtn"
+            onclick="closeModal('fileModal')"
+        >
+            إلغاء
+        </button>
+
+        <button
+            class="modalBtn primary"
+            onclick="saveFileModal()"
+        >
+            حفظ
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     EMOJI
+===================================================== -->
+
+<div
+    class="overlay"
+    id="emojiModal"
+>
+
+<div class="modal">
+
+    <div class="modalHead">
+
+        <strong>
+            😀 Emoji Studio
+        </strong>
+
+        <button
+            class="close"
+            onclick="closeModal('emojiModal')"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="modalBody">
+
+        <input
+            id="emojiSearch"
+            class="input"
+            placeholder="ابحث عن Emoji..."
+            oninput="filterEmoji(this.value)"
+        >
+
+        <div
+            class="emojiGrid"
+            id="emojiGrid"
+        ></div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ASSETS
+===================================================== -->
+
+<div
+    class="overlay"
+    id="assetsModal"
+>
+
+<div class="modal">
+
+    <div class="modalHead">
+
+        <strong>
+            🖼️ Project Assets
+        </strong>
+
+        <button
+            class="close"
+            onclick="closeModal('assetsModal')"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="modalBody">
+
+        <button
+            class="modalBtn primary"
+            onclick="openFilesUpload()"
+            style="width:100%;margin-bottom:12px"
+        >
+            📁 رفع صور / ملفات
+        </button>
+
+        <div
+            class="assetList"
+            id="assetList"
+        ></div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     AI
+===================================================== -->
+
+<div
+    class="overlay"
+    id="aiModal"
+>
+
+<div class="modal">
+
+    <div class="modalHead">
+
+        <strong>
+            ✨ NEGM AI CODE BUILDER
+        </strong>
+
+        <button
+            class="close"
+            onclick="closeModal('aiModal')"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="modalBody">
+
+        <div class="field">
+
+            <label>
+                اكتب ماذا تريد أن يبني AI
+            </label>
+
+            <textarea
+                id="aiPrompt"
+                class="textarea"
+                placeholder="مثلاً: اعمل موقع مطعم فاخر بالأسود والذهبي، صفحة رئيسية، قائمة الطعام، قسم للتواصل، أنيميشن قوي ومتجاوب مع الهاتف..."
+            ></textarea>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                نوع العملية
+            </label>
+
+            <select
+                id="aiType"
+                class="select"
+            >
+
+                <option value="full">
+                    🚀 بناء موقع كامل
+                </option>
+
+                <option value="html">
+                    🌐 إنشاء HTML
+                </option>
+
+                <option value="css">
+                    🎨 إنشاء CSS
+                </option>
+
+                <option value="javascript">
+                    ⚡ إنشاء JavaScript
+                </option>
+
+                <option value="fix">
+                    🛠️ إصلاح الكود
+                </option>
+
+                <option value="improve">
+                    🚀 تطوير الكود الحالي
+                </option>
+
+                <option value="file">
+                    📄 إنشاء ملف جديد
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                اسم الملف الذي سيبرمج فيه AI
+            </label>
+
+            <input
+                id="aiTargetFile"
+                class="input"
+                dir="ltr"
+                placeholder="اتركه فارغًا ليختار AI تلقائيًا"
+            >
+
+        </div>
+
+        <div
+            class="aiStatus"
+            id="aiStatus"
+        >
+
+            <div id="aiStatusText">
+                جاري التحضير...
+            </div>
+
+            <div class="aiProgress">
+
+                <div
+                    class="aiProgressBar"
+                    id="aiProgressBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modalFooter">
+
+        <button
+            class="modalBtn"
+            onclick="closeModal('aiModal')"
+        >
+            إلغاء
+        </button>
+
+        <button
+            class="modalBtn primary"
+            onclick="generateAI()"
+        >
+            ✨ ابنِ الكود الآن
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
+
+<div
+    class="overlay"
+    id="settingsModal"
+>
+
+<div class="modal">
+
+    <div class="modalHead">
+
+        <strong>
+            ⚙️ إعدادات NEGM CODE LAB
+        </strong>
+
+        <button
+            class="close"
+            onclick="closeModal('settingsModal')"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="modalBody">
+
+        <div class="field">
+
+            <label>
+                اسم المستخدم
+            </label>
+
+            <input
+                id="username"
+                class="input"
+                placeholder="اسمك"
+            >
+
+        </div>
+
+        <div class="sectionTitle">
+            🔥 Firebase
+        </div>
+
+        <div class="field">
+
+            <label>
+                Realtime Database URL
+            </label>
+
+            <input
+                id="firebaseURL"
+                class="input"
+                dir="ltr"
+                value="https://nanaa-1f1a5-default-rtdb.europe-west1.firebasedatabase.app"
+            >
+
+        </div>
+
+        <div class="sectionTitle">
+            ✨ AI API
+        </div>
+
+        <div class="field">
+
+            <label>
+                AI API URL
+            </label>
+
+            <input
+                id="aiApiUrl"
+                class="input"
+                dir="ltr"
+                placeholder="https://your-api.com/v1/chat/completions"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                AI API Key
+            </label>
+
+            <input
+                id="aiApiKey"
+                class="input"
+                type="password"
+                dir="ltr"
+                placeholder="ضع مفتاح API هنا"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                AI Model
+            </label>
+
+            <input
+                id="aiModel"
+                class="input"
+                dir="ltr"
+                placeholder="اسم الموديل"
+            >
+
+        </div>
+
+        <div
+            style="
+                padding:11px;
+                border-radius:11px;
+                background:#17120b;
+                border:1px solid #4a3519;
+                color:#d4b77e;
+                font-size:8px;
+                line-height:17px;
+            "
+        >
+            ⚠️ مفتاح API الموجود داخل HTML يكون ظاهرًا
+            للمستخدمين. في الإنتاج الأفضل وضع API خلف
+            سيرفر/Cloud Function.
+        </div>
+
+    </div>
+
+    <div class="modalFooter">
+
+        <button
+            class="modalBtn"
+            onclick="closeModal('settingsModal')"
+        >
+            إلغاء
+        </button>
+
+        <button
+            class="modalBtn primary"
+            onclick="saveSettings()"
+        >
+            حفظ الإعدادات
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FILE INPUTS
+===================================================== -->
+
+<input
+    id="fileInput"
+    type="file"
+    multiple
+    style="display:none"
+    accept="*/*"
+>
+
+<input
+    id="folderInput"
+    type="file"
+    webkitdirectory
+    directory
+    multiple
+    style="display:none"
+>
+
+
+<!-- =====================================================
+     CONTEXT MENU
+===================================================== -->
+
+<div
+    class="contextMenu"
+    id="contextMenu"
+>
+
+    <button
+        class="contextItem"
+        onclick="contextRename()"
+    >
+        ✏️ إعادة تسمية
+    </button>
+
+    <button
+        class="contextItem"
+        onclick="contextOpen()"
+    >
+        📄 فتح
+    </button>
+
+    <button
+        class="contextItem danger"
+        onclick="contextDelete()"
+    >
+        🗑️ حذف الملف
+    </button>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    get,
+    set,
+    remove
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+
+const DEFAULT_DATABASE_URL =
+"https://nanaa-1f1a5-default-rtdb.europe-west1.firebasedatabase.app";
+
+
+let database = null;
+
+
+function initFirebase(){
+
+    try{
+
+        const url =
+            localStorage.getItem("negm_firebase_url")
+            || DEFAULT_DATABASE_URL;
+
+        const app =
+            initializeApp({
+                databaseURL:url
+            });
+
+        database =
+            getDatabase(app);
+
+        console.log(
+            "Firebase connected"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        database=null;
+
+    }
+
+}
+
+initFirebase();
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+let userId =
+localStorage.getItem("negm_user_id");
+
+if(!userId){
+
+    userId =
+        "user_" +
+        crypto.randomUUID();
+
+    localStorage.setItem(
+        "negm_user_id",
+        userId
+    );
+
+}
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let projects = {};
+
+let currentProjectId = null;
+
+let currentFilePath = "";
+
+let currentFiles = {};
+
+let localImages = {};
+
+let saveTimer = null;
+
+let renameTarget = null;
+
+let contextTarget = null;
+
+
+/* =========================================================
+   DEFAULT PROJECT
+========================================================= */
+
+const DEFAULT_HTML = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>موقعي</title>
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:#10131a;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.card{
+    width:min(500px,90%);
+    padding:35px;
+    border-radius:25px;
+    background:#191e29;
+    text-align:center;
+    box-shadow:0 20px 80px #0008;
+}
+button{
+    padding:13px 20px;
+    border:0;
+    border-radius:12px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🚀 أهلاً بك في NEGM CODE LAB</h1>
+<p>عدّل الكود واضغط اختبار.</p>
+<button onclick="hello()">اضغط هنا</button>
+</div>
+<script>
+function hello(){
+    alert("🔥 JavaScript يعمل!");
+}
+<\/script>
+</body>
+</html>`;
+
+
+const DEFAULT_CSS =
+`body{
+    margin:0;
+}`;
+
+
+const DEFAULT_JS =
+`console.log("NEGM CODE LAB");`;
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+async function init(){
+
+    loadSettings();
+
+    await loadProjects();
+
+    if(
+        !Object.keys(projects).length
+    ){
+
+        const id =
+            "project_" +
+            Date.now();
+
+        projects[id] = {
+
+            id:id,
+
+            name:"موقعي الأول",
+
+            updatedAt:Date.now(),
+
+            files:{
+                "index.html":DEFAULT_HTML,
+                "style.css":DEFAULT_CSS,
+                "script.js":DEFAULT_JS
+            },
+
+            assets:{}
+
+        };
+
+        currentProjectId=id;
+
+        await saveProject(false);
+
+    }else{
+
+        currentProjectId =
+            localStorage.getItem(
+                "negm_current_project"
+            )
+            ||
+            Object.keys(projects)[0];
+
+    }
+
+    loadCurrentProject();
+
+    renderProjects();
+
+    renderFiles();
+
+    const firstHTML =
+        findMainHTML();
+
+    openFile(
+        firstHTML
+        ||
+        Object.keys(currentFiles)[0]
+        ||
+        "index.html"
+    );
+
+    runProject();
+
+    addConsole(
+        "NEGM CODE LAB PRO جاهز للعمل",
+        "success"
+    );
+
+}
+
+init();
+
+
+/* =========================================================
+   LOAD PROJECTS
+========================================================= */
+
+async function loadProjects(){
+
+    if(!database){
+
+        const local =
+            localStorage.getItem(
+                "negm_projects"
+            );
+
+        if(local){
+
+            try{
+
+                projects =
+                    JSON.parse(local);
+
+            }catch(e){
+
+                projects={};
+
+            }
+
+        }
+
+        return;
+
+    }
+
+    try{
+
+        const snapshot =
+            await get(
+                ref(
+                    database,
+                    "codeLab/users/" +
+                    userId +
+                    "/projects"
+                )
+            );
+
+        projects =
+            snapshot.exists()
+            ? snapshot.val()
+            : {};
+
+        localStorage.setItem(
+            "negm_projects",
+            JSON.stringify(projects)
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        const local =
+            localStorage.getItem(
+                "negm_projects"
+            );
+
+        try{
+
+            projects =
+                local
+                ? JSON.parse(local)
+                : {};
+
+        }catch(e){
+
+            projects={};
+
+        }
+
+        toast(
+            "⚠️ Firebase غير متاح — تم استخدام الحفظ المحلي"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE PROJECT
+========================================================= */
+
+window.saveProject = async function(showToast=true){
+
+    if(!currentProjectId)
+        return;
+
+    if(!projects[currentProjectId])
+        return;
+
+    projects[currentProjectId].files =
+        {...currentFiles};
+
+    projects[currentProjectId].assets =
+        {...localImages};
+
+    projects[currentProjectId].updatedAt =
+        Date.now();
+
+    const title =
+        document
+        .getElementById("projectTitle")
+        .textContent
+        .trim();
+
+    if(title)
+        projects[currentProjectId].name=title;
+
+    localStorage.setItem(
+        "negm_projects",
+        JSON.stringify(projects)
+    );
+
+    localStorage.setItem(
+        "negm_current_project",
+        currentProjectId
+    );
+
+    if(database){
+
+        try{
+
+            await set(
+
+                ref(
+                    database,
+                    "codeLab/users/" +
+                    userId +
+                    "/projects/" +
+                    currentProjectId
+                ),
+
+                projects[currentProjectId]
+
+            );
+
+            if(showToast)
+                toast(
+                    "☁️ تم حفظ المشروع في Firebase"
+                );
+
+        }catch(error){
+
+            console.error(error);
+
+            if(showToast)
+                toast(
+                    "⚠️ تم الحفظ محليًا"
+                );
+
+        }
+
+    }else{
+
+        if(showToast)
+            toast(
+                "💾 تم الحفظ محليًا"
+            );
+
+    }
+
+    renderProjects();
+
+};
+
+
+/* =========================================================
+   AUTO SAVE
+========================================================= */
+
+function scheduleSave(){
+
+    clearTimeout(saveTimer);
+
+    saveTimer =
+        setTimeout(
+            ()=>{
+                saveProject(false);
+            },
+            1400
+        );
+
+}
+
+
+/* =========================================================
+   LOAD CURRENT
+========================================================= */
+
+function loadCurrentProject(){
+
+    const project =
+        projects[currentProjectId];
+
+    if(!project)
+        return;
+
+    currentFiles =
+        project.files || {};
+
+    localImages =
+        project.assets || {};
+
+    document
+        .getElementById("projectTitle")
+        .textContent =
+            project.name || "مشروع";
+
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+function renderProjects(){
+
+    const container =
+        document.getElementById(
+            "projects"
+        );
+
+    container.innerHTML="";
+
+    const list =
+        Object.values(projects)
+        .sort(
+            (a,b)=>
+                (b.updatedAt||0) -
+                (a.updatedAt||0)
+        );
+
+    if(!list.length){
+
+        container.innerHTML=`
+            <div class="empty">
+                <div class="emptyIcon">📂</div>
+                لا توجد مشاريع
+            </div>
+        `;
+
+        return;
+
+    }
+
+    list.forEach(project=>{
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "project " +
+            (
+                project.id===currentProjectId
+                ? "active"
+                : ""
+            );
+
+        const fileCount =
+            Object.keys(
+                project.files || {}
+            ).length;
+
+        item.innerHTML=`
+
+            <div class="projectIcon">
+                🌐
+            </div>
+
+            <div class="projectInfo">
+
+                <div class="projectName">
+                    ${escapeHtml(project.name||"مشروع")}
+                </div>
+
+                <div class="projectDate">
+                    ${formatDate(project.updatedAt)}
+                </div>
+
+                <div class="projectFiles">
+                    ${fileCount} ملف
+                </div>
+
+            </div>
+
+            <button
+                class="projectDelete"
+            >
+                🗑️
+            </button>
+
+        `;
+
+        item.onclick =
+            ()=>switchProject(project.id);
+
+        item
+        .querySelector(".projectDelete")
+        .onclick =
+            event=>{
+
+                event.stopPropagation();
+
+                deleteProject(
+                    project.id
+                );
+
+            };
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   NEW PROJECT
+========================================================= */
+
+window.newProject=function(){
+
+    document
+        .getElementById("newProjectName")
+        .value="";
+
+    openModal(
+        "newProjectModal"
+    );
+
+};
+
+
+window.createProject=async function(){
+
+    const name =
+        document
+        .getElementById("newProjectName")
+        .value
+        .trim();
+
+    if(!name){
+
+        toast(
+            "اكتب اسم المشروع"
+        );
+
+        return;
+
+    }
+
+    const id =
+        "project_" +
+        Date.now();
+
+    projects[id]={
+
+        id:id,
+
+        name:name,
+
+        updatedAt:Date.now(),
+
+        files:{
+            "index.html":DEFAULT_HTML,
+            "style.css":DEFAULT_CSS,
+            "script.js":DEFAULT_JS
+        },
+
+        assets:{}
+
+    };
+
+    currentProjectId=id;
+
+    loadCurrentProject();
+
+    closeModal(
+        "newProjectModal"
+    );
+
+    renderProjects();
+
+    renderFiles();
+
+    openFile("index.html");
+
+    await saveProject();
+
+    runProject();
+
+};
+
+
+async function switchProject(id){
+
+    if(!projects[id])
+        return;
+
+    currentProjectId=id;
+
+    localStorage.setItem(
+        "negm_current_project",
+        id
+    );
+
+    loadCurrentProject();
+
+    renderProjects();
+
+    renderFiles();
+
+    const html =
+        findMainHTML();
+
+    openFile(
+        html
+        ||
+        Object.keys(currentFiles)[0]
+    );
+
+    runProject();
+
+}
+
+
+async function deleteProject(id){
+
+    if(
+        !confirm(
+            "هل تريد حذف المشروع نهائيًا؟"
+        )
+    )
+        return;
+
+    delete projects[id];
+
+    if(database){
+
+        try{
+
+            await remove(
+                ref(
+                    database,
+                    "codeLab/users/" +
+                    userId +
+                    "/projects/" +
+                    id
+                )
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+
+    localStorage.setItem(
+        "negm_projects",
+        JSON.stringify(projects)
+    );
+
+    const ids =
+        Object.keys(projects);
+
+    if(ids.length){
+
+        currentProjectId =
+            ids[0];
+
+        loadCurrentProject();
+
+        renderProjects();
+
+        renderFiles();
+
+        openFile(
+            findMainHTML()
+            ||
+            Object.keys(currentFiles)[0]
+        );
+
+        runProject();
+
+    }else{
+
+        currentProjectId=null;
+
+        currentFiles={};
+
+        localImages={};
+
+        renderProjects();
+
+        renderFiles();
+
+        document
+            .getElementById("code")
+            .value="";
+
+    }
+
+}
+
+
+/* =========================================================
+   FIND MAIN HTML
+========================================================= */
+
+function findMainHTML(){
+
+    const htmlFiles =
+        Object.keys(currentFiles)
+        .filter(
+            path=>
+                path
+                .toLowerCase()
+                .endsWith(".html")
+        );
+
+    if(
+        currentFiles["index.html"]
+    )
+        return "index.html";
+
+    if(
+        currentFiles["index.htm"]
+    )
+        return "index.htm";
+
+    return htmlFiles[0] || null;
+
+}
+
+
+/* =========================================================
+   FILE TREE
+========================================================= */
+
+function renderFiles(){
+
+    const tree =
+        document.getElementById(
+            "fileTree"
+        );
+
+    const search =
+        document
+        .getElementById(
+            "fileSearch"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+    tree.innerHTML="";
+
+    let paths =
+        Object.keys(currentFiles)
+        .sort();
+
+    if(search){
+
+        paths =
+            paths.filter(
+                path=>
+                    path
+                    .toLowerCase()
+                    .includes(search)
+            );
+
+    }
+
+    document
+        .getElementById("fileCount")
+        .textContent =
+            Object.keys(currentFiles).length;
+
+    if(!paths.length){
+
+        tree.innerHTML=`
+            <div class="empty">
+                <div class="emptyIcon">📄</div>
+                لا توجد ملفات
+            </div>
+        `;
+
+        return;
+
+    }
+
+    paths.forEach(path=>{
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "file " +
+            (
+                path===currentFilePath
+                ? "active"
+                : ""
+            );
+
+        const icon =
+            getFileIcon(path);
+
+        div.innerHTML=`
+
+            <span class="fileIcon">
+                ${icon}
+            </span>
+
+            <span class="fileName">
+                ${escapeHtml(path)}
+            </span>
+
+            <button
+                class="fileMenu"
+                title="خيارات"
+            >
+                ⋮
+            </button>
+
+        `;
+
+        div.onclick =
+            ()=>openFile(path);
+
+        div
+        .querySelector(".fileMenu")
+        .onclick =
+            event=>{
+
+                event.stopPropagation();
+
+                showContextMenu(
+                    event,
+                    path
+                );
+
+            };
+
+        div
+        .addEventListener(
+            "contextmenu",
+            event=>{
+
+                event.preventDefault();
+
+                showContextMenu(
+                    event,
+                    path
+                );
+
+            }
+        );
+
+        tree.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   FILE ICON
+========================================================= */
+
+function getFileIcon(path){
+
+    const ext =
+        path
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+    if(ext==="html")
+        return "🌐";
+
+    if(ext==="css")
+        return "🎨";
+
+    if(
+        ext==="js" ||
+        ext==="mjs"
+    )
+        return "⚡";
+
+    if(
+        [
+            "png",
+            "jpg",
+            "jpeg",
+            "webp",
+            "gif",
+            "svg",
+            "bmp"
+        ].includes(ext)
+    )
+        return "🖼️";
+
+    if(
+        [
+            "json",
+            "xml"
+        ].includes(ext)
+    )
+        return "📋";
+
+    if(
+        [
+            "txt",
+            "md"
+        ].includes(ext)
+    )
+        return "📝";
+
+    return "📄";
+
+}
+
+
+/* =========================================================
+   OPEN FILE
+========================================================= */
+
+window.openFile=function(path){
+
+    if(!(path in currentFiles))
+        return;
+
+    currentFilePath=path;
+
+    document
+        .getElementById("code")
+        .value =
+            currentFiles[path] || "";
+
+    updateLineNumbers();
+
+    renderFiles();
+
+    renderTabs();
+
+    document
+        .getElementById("code")
+        .focus();
+
+};
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+function renderTabs(){
+
+    const tabs =
+        document.getElementById(
+            "tabs"
+        );
+
+    tabs.innerHTML="";
+
+    Object.keys(currentFiles)
+        .forEach(path=>{
+
+            const tab =
+                document.createElement("div");
+
+            tab.className =
+                "tab " +
+                (
+                    path===currentFilePath
+                    ? "active"
+                    : ""
+                );
+
+            tab.innerHTML=`
+
+                <span>
+                    ${getFileIcon(path)}
+                </span>
+
+                <span class="tabName">
+                    ${escapeHtml(path)}
+                </span>
+
+            `;
+
+            tab.onclick =
+                ()=>openFile(path);
+
+            tabs.appendChild(tab);
+
+        });
+
+}
+
+
+/* =========================================================
+   CODE CHANGE
+========================================================= */
+
+window.codeChanged=function(){
+
+    if(!currentFilePath)
+        return;
+
+    currentFiles[currentFilePath] =
+        document
+        .getElementById("code")
+        .value;
+
+    updateLineNumbers();
+
+    scheduleSave();
+
+};
+
+
+function updateLineNumbers(){
+
+    const value =
+        document
+        .getElementById("code")
+        .value;
+
+    const count =
+        Math.max(
+            1,
+            value.split("\n").length
+        );
+
+    document
+        .getElementById("lineNumbers")
+        .innerHTML =
+            Array
+            .from(
+                {length:count},
+                (_,i)=>i+1
+            )
+            .join("<br>");
+
+}
+
+
+window.syncEditorScroll=function(){
+
+    const code =
+        document.getElementById(
+            "code"
+        );
+
+    const numbers =
+        document.getElementById(
+            "lineNumbers"
+        );
+
+    numbers.scrollTop =
+        code.scrollTop;
+
+};
+
+
+/* =========================================================
+   EDITOR SHORTCUTS
+========================================================= */
+
+window.editorKeydown=function(event){
+
+    const textarea =
+        event.target;
+
+    if(event.key==="Tab"){
+
+        event.preventDefault();
+
+        const start =
+            textarea.selectionStart;
+
+        const end =
+            textarea.selectionEnd;
+
+        textarea.value =
+            textarea.value.substring(0,start)
+            +
+            "  "
+            +
+            textarea.value.substring(end);
+
+        textarea.selectionStart =
+        textarea.selectionEnd =
+            start+2;
+
+        codeChanged();
+
+    }
+
+    if(
+        (event.ctrlKey||event.metaKey)
+        &&
+        event.key.toLowerCase()==="s"
+    ){
+
+        event.preventDefault();
+
+        saveProject();
+
+    }
+
+    if(
+        (event.ctrlKey||event.metaKey)
+        &&
+        event.key==="Enter"
+    ){
+
+        event.preventDefault();
+
+        runProject();
+
+    }
+
+};
+
+
+/* =========================================================
+   RUN PROJECT
+========================================================= */
+
+window.runProject=function(){
+
+    const mainHTML =
+        findMainHTML();
+
+    if(!mainHTML){
+
+        toast(
+            "❌ لم يتم العثور على ملف HTML"
+        );
+
+        addConsole(
+            "لا يوجد ملف HTML لتشغيله",
+            "error"
+        );
+
+        return;
+
+    }
+
+    let html =
+        currentFiles[mainHTML] || "";
+
+    const cssFiles =
+        Object.keys(currentFiles)
+        .filter(
+            path=>
+                path
+                .toLowerCase()
+                .endsWith(".css")
+        );
+
+    const jsFiles =
+        Object.keys(currentFiles)
+        .filter(
+            path=>
+                path
+                .toLowerCase()
+                .endsWith(".js")
+        );
+
+
+    /* =====================================================
+       INJECT CSS
+    ===================================================== */
+
+    let css="";
+
+    cssFiles.forEach(
+        path=>{
+            css +=
+                "\n/* "+path+" */\n"
+                +
+                currentFiles[path]
+                +
+                "\n";
+        }
+    );
+
+
+    if(css){
+
+        if(
+            html
+            .toLowerCase()
+            .includes("</head>")
+        ){
+
+            html =
+                html.replace(
+                    /<\/head>/i,
+                    `<style data-negm-css>
+${css}
+</style>
+</head>`
+                );
+
+        }else{
+
+            html =
+                `<style data-negm-css>
+${css}
+</style>`
+                +
+                html;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       INJECT JS
+    ===================================================== */
+
+    let js="";
+
+    jsFiles.forEach(
+        path=>{
+            js +=
+                "\n/* "+path+" */\n"
+                +
+                currentFiles[path]
+                +
+                "\n";
+        }
+    );
+
+
+    /*
+       Console bridge
+    */
+
+    const bridge = `
+<script>
+(function(){
+
+const originalLog =
+console.log;
+
+const originalError =
+console.error;
+
+const originalWarn =
+console.warn;
+
+function send(level,args){
+
+    try{
+
+        parent.postMessage({
+
+            type:"console",
+
+            level:level,
+
+            message:Array
+                .from(args)
+                .map(x=>{
+                    try{
+                        return typeof x==="object"
+                            ? JSON.stringify(x)
+                            : String(x);
+                    }catch(e){
+                        return String(x);
+                    }
+                })
+                .join(" ")
+
+        },"*");
+
+    }catch(e){}
+
+}
+
+console.log=function(){
+
+    send("info",arguments);
+
+    originalLog.apply(
+        console,
+        arguments
+    );
+
+};
+
+console.error=function(){
+
+    send("error",arguments);
+
+    originalError.apply(
+        console,
+        arguments
+    );
+
+};
+
+console.warn=function(){
+
+    send("warn",arguments);
+
+    originalWarn.apply(
+        console,
+        arguments
+    );
+
+};
+
+window.addEventListener(
+    "error",
+    function(event){
+
+        send(
+            "error",
+            [
+                "JS Error:",
+                event.message
+            ]
+        );
+
+    }
+);
+
+})();
+<\/script>
+`;
+
+
+    if(js){
+
+        if(
+            html
+            .toLowerCase()
+            .includes("</body>")
+        ){
+
+            html =
+                html.replace(
+                    /<\/body>/i,
+                    bridge
+                    +
+                    `<script data-negm-js>
+${js}
+<\/script>
+</body>`
+                );
+
+        }else{
+
+            html +=
+                bridge
+                +
+                `<script data-negm-js>
+${js}
+<\/script>`;
+
+        }
+
+    }else{
+
+        if(
+            html
+            .toLowerCase()
+            .includes("</body>")
+        ){
+
+            html =
+                html.replace(
+                    /<\/body>/i,
+                    bridge +
+                    "</body>"
+                );
+
+        }else{
+
+            html += bridge;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ASSET PATH REPLACEMENT
+    ===================================================== */
+
+    Object.keys(localImages)
+        .forEach(path=>{
+
+            const data =
+                localImages[path];
+
+            const normalized =
+                normalizePath(path);
+
+            const variants = [
+                path,
+                "./"+path,
+                "/"+path,
+                normalized,
+                "./"+normalized,
+                "/"+normalized
+            ];
+
+            variants.forEach(
+                variant=>{
+
+                    const escaped =
+                        variant.replace(
+                            /[.*+?^${}()|[\]\\]/g,
+                            "\\$&"
+                        );
+
+                    html =
+                        html.replace(
+                            new RegExp(
+                                `(["'])${escaped}\\1`,
+                                "g"
+                            ),
+                            `"${data}"`
+                        );
+
+                }
+            );
+
+        });
+
+
+    const frame =
+        document.getElementById(
+            "previewFrame"
+        );
+
+    frame.srcdoc=html;
+
+    document
+        .getElementById("previewUrl")
+        .textContent =
+            "preview://negm-code-lab/" +
+            mainHTML;
+
+    clearConsole();
+
+    addConsole(
+        "▶ تم تشغيل: "+mainHTML,
+        "success"
+    );
+
+    addConsole(
+        "CSS files: "+cssFiles.length,
+        "info"
+    );
+
+    addConsole(
+        "JS files: "+jsFiles.length,
+        "info"
+    );
+
+    addConsole(
+        "Assets: "+
+        Object.keys(localImages).length,
+        "info"
+    );
+
+};
+
+
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+window.togglePreview=function(){
+
+    const main =
+        document.getElementById(
+            "main"
+        );
+
+    if(
+        window.innerWidth>=1001
+    ){
+
+        main.classList.toggle(
+            "previewMode"
+        );
+
+        return;
+
+    }
+
+    mobilePreview();
+
+};
+
+
+window.mobilePreview=function(){
+
+    document
+        .querySelector(".editorArea")
+        .style.display="none";
+
+    document
+        .getElementById("previewArea")
+        .style.display="flex";
+
+    document
+        .querySelectorAll(".mobileNav button")
+        .forEach(
+            x=>x.classList.remove("active")
+        );
+
+    document
+        .getElementById("navRun")
+        .classList.add("active");
+
+};
+
+
+window.mobileEditor=function(){
+
+    document
+        .getElementById("previewArea")
+        .style.display="none";
+
+    document
+        .querySelector(".editorArea")
+        .style.display="flex";
+
+    document
+        .querySelectorAll(".mobileNav button")
+        .forEach(
+            x=>x.classList.remove("active")
+        );
+
+    document
+        .getElementById("navCode")
+        .classList.add("active");
+
+};
+
+
+window.openFilesManager=function(){
+
+    if(window.innerWidth<=850){
+
+        openFilePickerModal();
+
+        return;
+
+    }
+
+};
+
+
+/* =========================================================
+   MOBILE FILE MANAGER
+========================================================= */
+
+function openFilePickerModal(){
+
+    const html =
+        Object.keys(currentFiles)
+        .map(
+            path=>
+                `<button
+                    class="contextItem"
+                    data-file="${escapeAttribute(path)}"
+                >
+                    ${getFileIcon(path)}
+                    ${escapeHtml(path)}
+                </button>`
+        )
+        .join("");
+
+    const modal =
+        document.createElement("div");
+
+    modal.className="overlay show";
+
+    modal.innerHTML=`
+
+        <div class="modal">
+
+            <div class="modalHead">
+
+                <strong>
+                    📁 ملفات المشروع
+                </strong>
+
+                <button class="close">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="modalBody">
+
+                <button
+                    class="modalBtn primary"
+                    id="mobileNewFile"
+                    style="width:100%;margin-bottom:10px"
+                >
+                    ＋ ملف جديد
+                </button>
+
+                <div>
+                    ${html || `
+                        <div class="empty">
+                            لا توجد ملفات
+                        </div>
+                    `}
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    modal
+        .querySelector(".close")
+        .onclick=()=>{
+            modal.remove();
+        };
+
+    modal
+        .querySelector("#mobileNewFile")
+        .onclick=()=>{
+            modal.remove();
+            createFile();
+        };
+
+    modal
+        .querySelectorAll("[data-file]")
+        .forEach(
+            button=>{
+
+                button.onclick=()=>{
+
+                    const path =
+                        button.dataset.file;
+
+                    modal.remove();
+
+                    openFile(path);
+
+                    mobileEditor();
+
+                };
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   CONSOLE
+========================================================= */
+
+function clearConsole(){
+
+    document
+        .getElementById("console")
+        .innerHTML="";
+
+}
+
+
+function addConsole(
+    text,
+    type="info"
+){
+
+    const consoleEl =
+        document.getElementById(
+            "console"
+        );
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "log "+type;
+
+    div.textContent =
+        text;
+
+    consoleEl.appendChild(div);
+
+    consoleEl.scrollTop =
+        consoleEl.scrollHeight;
+
+}
+
+
+window.showBottom=function(
+    type,
+    element
+){
+
+    document
+        .querySelectorAll(".bottomTab")
+        .forEach(
+            x=>x.classList.remove("active")
+        );
+
+    element.classList.add("active");
+
+};
+
+
+/* =========================================================
+   FILE UPLOAD
+========================================================= */
+
+window.openFilesUpload=function(){
+
+    document
+        .getElementById("fileInput")
+        .click();
+
+};
+
+
+document
+.getElementById("fileInput")
+.addEventListener(
+    "change",
+    async function(){
+
+        await processFiles(
+            Array.from(this.files)
+        );
+
+        this.value="";
+
+    }
+);
+
+
+async function processFiles(files){
+
+    if(!files.length)
+        return;
+
+    let added=0;
+
+    for(
+        const file of files
+    ){
+
+        try{
+
+            let path =
+                file.webkitRelativePath
+                ||
+                file.name;
+
+            path =
+                normalizePath(path);
+
+            const ext =
+                getExtension(path);
+
+            if(
+                isImageExtension(ext)
+            ){
+
+                const data =
+                    await fileToDataURL(
+                        file
+                    );
+
+                localImages[path]=
+                    data;
+
+                currentFiles[path]=
+                    data;
+
+            }else{
+
+                const text =
+                    await file.text();
+
+                currentFiles[path]=
+                    text;
+
+            }
+
+            added++;
+
+        }catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+
+    renderFiles();
+
+    renderTabs();
+
+    renderAssets();
+
+    scheduleSave();
+
+    toast(
+        `📁 تم رفع ${added} ملف`
+    );
+
+    if(
+        findMainHTML()
+    ){
+
+        openFile(
+            findMainHTML()
+        );
+
+        runProject();
+
+    }
+
+}
+
+
+/* =========================================================
+   FILE TO DATA URL
+========================================================= */
+
+function fileToDataURL(file){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                ()=>resolve(
+                    reader.result
+                );
+
+            reader.onerror =
+                reject;
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CREATE FILE
+========================================================= */
+
+window.createFile=function(){
+
+    renameTarget=null;
+
+    document
+        .getElementById("fileModalTitle")
+        .textContent =
+            "📄 ملف جديد";
+
+    document
+        .getElementById("newFileName")
+        .value="";
+
+    document
+        .getElementById("renameHint")
+        .style.display="none";
+
+    openModal(
+        "fileModal"
+    );
+
+};
+
+
+window.saveFileModal=function(){
+
+    const name =
+        normalizePath(
+            document
+            .getElementById("newFileName")
+            .value
+            .trim()
+        );
+
+    if(!name){
+
+        toast(
+            "اكتب اسم الملف"
+        );
+
+        return;
+
+    }
+
+    if(renameTarget){
+
+        renameFile(
+            renameTarget,
+            name
+        );
+
+        closeModal(
+            "fileModal"
+        );
+
+        return;
+
+    }
+
+    if(
+        currentFiles[name]
+        !==undefined
+    ){
+
+        toast(
+            "❌ الملف موجود بالفعل"
+        );
+
+        return;
+
+    }
+
+    let content="";
+
+    const ext =
+        getExtension(name);
+
+    if(ext==="html"){
+
+        content =
+`<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New Page</title>
+</head>
+<body>
+
+<h1>صفحة جديدة</h1>
+
+</body>
+</html>`;
+
+    }else if(ext==="css"){
+
+        content =
+`body{
+    margin:0;
+}`;
+
+    }else if(ext==="js"){
+
+        content =
+`console.log("New JavaScript file");`;
+
+    }else if(ext==="json"){
+
+        content =
+`{
+}`;
+
+    }
+
+    currentFiles[name]=content;
+
+    closeModal(
+        "fileModal"
+    );
+
+    renderFiles();
+
+    renderTabs();
+
+    openFile(name);
+
+    scheduleSave();
+
+    toast(
+        "📄 تم إنشاء الملف"
+    );
+
+};
+
+
+/* =========================================================
+   RENAME FILE
+========================================================= */
+
+function openRenameFile(path){
+
+    renameTarget=path;
+
+    document
+        .getElementById("fileModalTitle")
+        .textContent =
+            "✏️ إعادة تسمية الملف";
+
+    document
+        .getElementById("newFileName")
+        .value=path;
+
+    document
+        .getElementById("renameHint")
+        .style.display="block";
+
+    openModal(
+        "fileModal"
+    );
+
+}
+
+
+function renameFile(
+    oldPath,
+    newPath
+){
+
+    if(!oldPath)
+        return;
+
+    if(
+        oldPath===newPath
+    )
+        return;
+
+    if(
+        currentFiles[newPath]
+        !==undefined
+    ){
+
+        toast(
+            "❌ الاسم الجديد موجود بالفعل"
+        );
+
+        return;
+
+    }
+
+    const content =
+        currentFiles[oldPath];
+
+    delete currentFiles[oldPath];
+
+    currentFiles[newPath]=content;
+
+    if(
+        localImages[oldPath]
+    ){
+
+        localImages[newPath] =
+            localImages[oldPath];
+
+        delete localImages[oldPath];
+
+    }
+
+    if(
+        currentFilePath===oldPath
+    ){
+
+        currentFilePath =
+            newPath;
+
+    }
+
+    renderFiles();
+
+    renderTabs();
+
+    openFile(newPath);
+
+    scheduleSave();
+
+    runProject();
+
+    toast(
+        "✏️ تم تغيير اسم الملف"
+    );
+
+}
+
+
+/* =========================================================
+   DELETE FILE
+========================================================= */
+
+function deleteFile(path){
+
+    if(
+        !confirm(
+            "هل تريد حذف الملف:\n"+path
+        )
+    )
+        return;
+
+    delete currentFiles[path];
+
+    delete localImages[path];
+
+    if(
+        currentFilePath===path
+    ){
+
+        currentFilePath =
+            findMainHTML()
+            ||
+            Object.keys(currentFiles)[0]
+            ||
+            "";
+
+    }
+
+    renderFiles();
+
+    renderTabs();
+
+    if(currentFilePath)
+        openFile(currentFilePath);
+    else
+        document
+            .getElementById("code")
+            .value="";
+
+    scheduleSave();
+
+    runProject();
+
+    toast(
+        "🗑️ تم حذف الملف"
+    );
+
+}
+
+
+/* =========================================================
+   CONTEXT MENU
+========================================================= */
+
+function showContextMenu(
+    event,
+    path
+){
+
+    contextTarget=path;
+
+    const menu =
+        document.getElementById(
+            "contextMenu"
+        );
+
+    menu.classList.add("show");
+
+    let x =
+        event.clientX;
+
+    let y =
+        event.clientY;
+
+    const rect =
+        menu.getBoundingClientRect();
+
+    if(
+        x+rect.width >
+        window.innerWidth
+    )
+        x =
+            window.innerWidth -
+            rect.width -
+            8;
+
+    if(
+        y+rect.height >
+        window.innerHeight
+    )
+        y =
+            window.innerHeight -
+            rect.height -
+            8;
+
+    menu.style.left =
+        x+"px";
+
+    menu.style.top =
+        y+"px";
+
+}
+
+
+window.contextRename=function(){
+
+    if(contextTarget)
+        openRenameFile(
+            contextTarget
+        );
+
+    hideContextMenu();
+
+};
+
+
+window.contextOpen=function(){
+
+    if(contextTarget)
+        openFile(
+            contextTarget
+        );
+
+    hideContextMenu();
+
+};
+
+
+window.contextDelete=function(){
+
+    if(contextTarget)
+        deleteFile(
+            contextTarget
+        );
+
+    hideContextMenu();
+
+};
+
+
+function hideContextMenu(){
+
+    document
+        .getElementById(
+            "contextMenu"
+        )
+        .classList.remove("show");
+
+}
+
+
+document.addEventListener(
+    "click",
+    event=>{
+
+        const menu =
+            document.getElementById(
+                "contextMenu"
+            );
+
+        if(
+            !menu.contains(event.target)
+        )
+            hideContextMenu();
+
+    }
+);
+
+
+/* =========================================================
+   ASSETS
+========================================================= */
+
+window.openAssets=function(){
+
+    renderAssets();
+
+    openModal(
+        "assetsModal"
+    );
+
+};
+
+
+function renderAssets(){
+
+    const list =
+        document.getElementById(
+            "assetList"
+        );
+
+    list.innerHTML="";
+
+    const paths =
+        Object.keys(localImages);
+
+    if(!paths.length){
+
+        list.innerHTML=`
+            <div
+                class="empty"
+                style="grid-column:1/-1"
+            >
+                <div class="emptyIcon">
+                    🖼️
+                </div>
+                لم يتم رفع صور بعد
+            </div>
+        `;
+
+        return;
+
+    }
+
+    paths.forEach(path=>{
+
+        const item =
+            document.createElement("div");
+
+        item.className="asset";
+
+        item.innerHTML=`
+
+            <img
+                src="${localImages[path]}"
+            >
+
+            <div class="assetName">
+                ${escapeHtml(path)}
+            </div>
+
+        `;
+
+        item.onclick=()=>{
+
+            const code =
+                path;
+
+            if(
+                navigator.clipboard
+            ){
+
+                navigator.clipboard
+                    .writeText(code);
+
+            }
+
+            toast(
+                "📋 تم نسخ مسار الصورة: "+path
+            );
+
+        };
+
+        list.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   EMOJI
+========================================================= */
+
+const emojis=[
+
+"😀","😃","😄","😁","😆","😅","😂","🤣",
+"😊","😇","🙂","🙃","😉","😌","😍","🥰",
+"😘","😗","😙","😚","😋","😛","😝","😜",
+"🤪","🤨","🧐","🤓","😎","🤩","🥳","😏",
+"😒","😞","😔","😟","😕","🙁","☹️","😣",
+"😖","😫","😩","🥺","😢","😭","😤","😠",
+"😡","🤬","🤯","😳","🥵","🥶","😱","😨",
+"😰","😥","😓","🤗","🤔","🫣","🤭","🫢",
+"🤫","🤥","😶","🫠","😐","🫡","😑","😬",
+"🙄","😯","😦","😧","😮","😲","🥱","😴",
+"🤤","😪","😵","🤐","🥴","🤢","🤮","🤧",
+"😷","🤒","🤕","🤑","🤠","👻","💀","☠️",
+"👽","🤖","🎃","😈","👿","🔥","⭐","🌟",
+"✨","⚡","🚀","💎","❤️","🧡","💛","💚",
+"💙","💜","🖤","🤍","🤎","💔","💯","💥",
+"🎉","🎊","🎯","🏆","🥇","🥈","🥉","🎮",
+"💻","📱","⌚","📷","🎥","🎵","🎶","🔔",
+"🔒","🔑","🛠️","⚙️","📁","📂","📄","📝",
+"🌈","☀️","🌙","⭐","🌍","🌎","🌏","🌸",
+"🌹","🌺","🌻","🍔","🍕","🍟","🍎","🍓",
+"🍉","🍇","☕","🎂","🍰","🥤","⚽","🏀",
+"🎾","🏎️","✈️","🚗","🚀","🎁","🎈","💡"
+
+];
+
+
+window.openEmoji=function(){
+
+    renderEmoji(
+        emojis
+    );
+
+    document
+        .getElementById("emojiSearch")
+        .value="";
+
+    openModal(
+        "emojiModal"
+    );
+
+};
+
+
+function renderEmoji(list){
+
+    const grid =
+        document.getElementById(
+            "emojiGrid"
+        );
+
+    grid.innerHTML="";
+
+    list.forEach(
+        emoji=>{
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className="emoji";
+
+            button.textContent=
+                emoji;
+
+            button.onclick =
+                ()=>insertEmoji(
+                    emoji
+                );
+
+            grid.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+window.filterEmoji=function(value){
+
+    const q =
+        value.trim();
+
+    if(!q){
+
+        renderEmoji(
+            emojis
+        );
+
+        return;
+
+    }
+
+    renderEmoji(
+        emojis.filter(
+            emoji=>
+                emoji.includes(q)
+        )
+    );
+
+};
+
+
+function insertEmoji(emoji){
+
+    const textarea =
+        document.getElementById(
+            "code"
+        );
+
+    textarea.focus();
+
+    const start =
+        textarea.selectionStart;
+
+    const end =
+        textarea.selectionEnd;
+
+    const value =
+        textarea.value;
+
+    textarea.value =
+        value.substring(0,start)
+        +
+        emoji
+        +
+        value.substring(end);
+
+    textarea.selectionStart =
+    textarea.selectionEnd =
+        start +
+        emoji.length;
+
+    codeChanged();
+
+    closeModal(
+        "emojiModal"
+    );
+
+    toast(
+        "😀 تمت إضافة Emoji للكود"
+    );
+
+}
+
+
+/* =========================================================
+   AI
+========================================================= */
+
+window.openAI=function(){
+
+    loadSettings();
+
+    document
+        .getElementById("aiTargetFile")
+        .value =
+            currentFilePath || "";
+
+    document
+        .getElementById("aiStatus")
+        .style.display="none";
+
+    document
+        .getElementById("aiProgressBar")
+        .style.width="0%";
+
+    openModal(
+        "aiModal"
+    );
+
+};
+
+
+window.generateAI=async function(){
+
+    const prompt =
+        document
+        .getElementById("aiPrompt")
+        .value
+        .trim();
+
+    const type =
+        document
+        .getElementById("aiType")
+        .value;
+
+    const requestedTarget =
+        document
+        .getElementById("aiTargetFile")
+        .value
+        .trim();
+
+    const apiUrl =
+        localStorage.getItem(
+            "negm_ai_url"
+        );
+
+    const apiKey =
+        localStorage.getItem(
+            "negm_ai_key"
+        );
+
+    const model =
+        localStorage.getItem(
+            "negm_ai_model"
+        );
+
+    if(!prompt){
+
+        toast(
+            "اكتب المطلوب من AI"
+        );
+
+        return;
+
+    }
+
+    if(!apiUrl){
+
+        toast(
+            "ضع AI API URL من الإعدادات"
+        );
+
+        closeModal(
+            "aiModal"
+        );
+
+        openSettings();
+
+        return;
+
+    }
+
+
+    const status =
+        document.getElementById(
+            "aiStatus"
+        );
+
+    const statusText =
+        document.getElementById(
+            "aiStatusText"
+        );
+
+    const progress =
+        document.getElementById(
+            "aiProgressBar"
+        );
+
+    status.style.display="block";
+
+    progress.style.width="10%";
+
+    statusText.textContent =
+        "⏳ AI يفهم طلبك...";
+
+
+    try{
+
+        const projectContext =
+            buildProjectContext();
+
+        const systemPrompt = `
+أنت الآن محرك برمجة داخل NEGM CODE LAB PRO.
+
+مهمتك ليست شرح الكود للمستخدم.
+مهمتك هي كتابة الكود الذي طلبه المستخدم مباشرة.
+
+القواعد:
+
+1. إذا طلب المستخدم موقعًا كاملًا، أنشئ موقعًا كاملًا عمليًا.
+2. استخدم HTML وCSS وJavaScript عند الحاجة.
+3. التصميم يجب أن يكون احترافيًا ومتجاوبًا مع الهاتف.
+4. اللغة العربية وRTL عندما يكون الموقع عربيًا.
+5. لا تكتب "انسخ الكود" أو "الصق الكود".
+6. أرجع الكود فقط بدون شرح.
+7. لا تستخدم markdown code fences.
+8. إذا كان الطلب HTML فأرجع HTML.
+9. إذا كان الطلب CSS فأرجع CSS.
+10. إذا كان الطلب JavaScript فأرجع JavaScript.
+11. إذا كان المطلوب إصلاح الكود، أرجع النسخة المصححة كاملة.
+12. إذا كان المطلوب تطوير الموقع، حافظ على المميزات الموجودة وأضف المطلوب.
+13. لا تحذف المميزات الحالية بدون سبب.
+14. لا تستخدم صورًا خارجية إذا كان هناك Assets محلية مناسبة.
+15. عندما يحتاج الموقع إلى صور، استخدم مسارات Assets الموجودة في المشروع.
+16. اجعل JavaScript يعمل فعليًا.
+17. اجعل الأزرار تعمل فعليًا.
+18. لا تضع شرحًا خارج الكود.
+19. الكود الذي تعيده سيتم وضعه تلقائيًا داخل المشروع.
+20. إذا كان المطلوب موقعًا كاملًا، يفضل أن يكون HTML واحدًا مكتملًا إذا لم يطلب المستخدم ملفات منفصلة.
+`;
+
+
+        const userPrompt = `
+نوع العملية:
+${type}
+
+طلب المستخدم:
+${prompt}
+
+الملف المستهدف:
+${requestedTarget || "اختيار تلقائي"}
+
+المشروع الحالي:
+${projectContext}
+`;
+
+
+        progress.style.width="25%";
+
+        statusText.textContent =
+            "🧠 AI يقوم ببناء الكود...";
+
+
+        const response =
+            await fetch(
+                apiUrl,
+                {
+
+                    method:"POST",
+
+                    headers:{
+
+                        "Content-Type":
+                            "application/json",
+
+                        ...(apiKey
+                            ? {
+                                "Authorization":
+                                "Bearer "+apiKey
+                            }
+                            : {})
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            ...(model
+                                ? {
+                                    model:model
+                                  }
+                                : {}),
+
+                            messages:[
+
+                                {
+                                    role:"system",
+                                    content:
+                                        systemPrompt
+                                },
+
+                                {
+                                    role:"user",
+                                    content:
+                                        userPrompt
+                                }
+
+                            ]
+
+                        })
+
+                }
+            );
+
+
+        progress.style.width="55%";
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP "+response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        let result =
+            extractAIText(data);
+
+
+        if(!result){
+
+            throw new Error(
+                "API لم ترجع كودًا"
+            );
+
+        }
+
+
+        result =
+            cleanCode(
+                result
+            );
+
+
+        progress.style.width="75%";
+
+
+        statusText.textContent =
+            "⚙️ يتم وضع الكود داخل المشروع...";
+
+
+        const target =
+            chooseAITarget(
+                type,
+                requestedTarget,
+                result
+            );
+
+
+        if(
+            type==="full"
+            ||
+            looksLikeFullHTML(result)
+        ){
+
+            /*
+               إذا AI أعاد HTML كاملًا،
+               نضعه مباشرة في HTML.
+            */
+
+            currentFiles[target]=
+                result;
+
+            currentFilePath=
+                target;
+
+            openFile(target);
+
+        }else if(
+            type==="css"
+        ){
+
+            const cssTarget =
+                requestedTarget
+                ||
+                findExistingCSS()
+                ||
+                "style.css";
+
+            currentFiles[cssTarget]=
+                result;
+
+            currentFilePath=
+                cssTarget;
+
+            openFile(cssTarget);
+
+        }else if(
+            type==="javascript"
+        ){
+
+            const jsTarget =
+                requestedTarget
+                ||
+                findExistingJS()
+                ||
+                "script.js";
+
+            currentFiles[jsTarget]=
+                result;
+
+            currentFilePath=
+                jsTarget;
+
+            openFile(jsTarget);
+
+        }else if(
+            type==="file"
+        ){
+
+            let fileTarget =
+                requestedTarget
+                ||
+                suggestFileName(
+                    result
+                );
+
+            if(
+                currentFiles[fileTarget]
+                !==undefined
+            ){
+
+                fileTarget =
+                    uniqueFileName(
+                        fileTarget
+                    );
+
+            }
+
+            currentFiles[fileTarget]=
+                result;
+
+            currentFilePath=
+                fileTarget;
+
+            openFile(fileTarget);
+
+        }else{
+
+            /*
+               fix / improve / html
+            */
+
+            if(
+                looksLikeHTML(result)
+            ){
+
+                const htmlTarget =
+                    requestedTarget
+                    ||
+                    findMainHTML()
+                    ||
+                    "index.html";
+
+                currentFiles[htmlTarget]=
+                    result;
+
+                currentFilePath=
+                    htmlTarget;
+
+                openFile(
+                    htmlTarget
+                );
+
+            }else{
+
+                currentFiles[currentFilePath || "index.html"] =
+                    result;
+
+                openFile(
+                    currentFilePath || "index.html"
+                );
+
+            }
+
+        }
+
+
+        renderFiles();
+
+        renderTabs();
+
+        progress.style.width="90%";
+
+
+        /*
+           حفظ تلقائي مباشر
+        */
+
+        await saveProject(false);
+
+
+        /*
+           تشغيل تلقائي
+        */
+
+        runProject();
+
+
+        progress.style.width="100%";
+
+        statusText.textContent =
+            "✅ تم إنشاء الكود وبرمجته وتشغيله مباشرة";
+
+
+        toast(
+            "✨ AI برمج الكود داخل المشروع مباشرة"
+        );
+
+
+        setTimeout(
+            ()=>{
+                closeModal(
+                    "aiModal"
+                );
+            },
+            900
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        statusText.textContent =
+            "❌ فشل AI: "+
+            error.message;
+
+        progress.style.width="0%";
+
+        toast(
+            "❌ حدث خطأ في AI"
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   AI PROJECT CONTEXT
+========================================================= */
+
+function buildProjectContext(){
+
+    let context="";
+
+    Object.keys(currentFiles)
+        .forEach(path=>{
+
+            const content =
+                currentFiles[path] || "";
+
+            /*
+               لا نرسل Data URL للـAI
+               لتجنب ضخامة الطلب.
+            */
+
+            if(
+                isImageExtension(
+                    getExtension(path)
+                )
+            ){
+
+                context +=
+                    `\nFILE: ${path}\n[IMAGE ASSET]\n`;
+
+                return;
+
+            }
+
+            const limited =
+                content.length>15000
+                ? content.substring(
+                    0,
+                    15000
+                  )
+                : content;
+
+            context +=
+                `\nFILE: ${path}\n`
+                +
+                limited
+                +
+                "\nEND FILE\n";
+
+        });
+
+    return context || "المشروع فارغ.";
+
+}
+
+
+/* =========================================================
+   AI TARGET
+========================================================= */
+
+function chooseAITarget(
+    type,
+    requested,
+    result
+){
+
+    if(requested)
+        return normalizePath(
+            requested
+        );
+
+    if(
+        type==="full"
+        ||
+        looksLikeFullHTML(result)
+    ){
+
+        return findMainHTML()
+            ||
+            "index.html";
+
+    }
+
+    if(type==="html"){
+
+        return findMainHTML()
+            ||
+            "index.html";
+
+    }
+
+    return currentFilePath
+        ||
+        "index.html";
+
+}
+
+
+/* =========================================================
+   AI HELPERS
+========================================================= */
+
+function findExistingCSS(){
+
+    return Object.keys(
+        currentFiles
+    ).find(
+        path=>
+            path
+            .toLowerCase()
+            .endsWith(".css")
+    );
+
+}
+
+
+function findExistingJS(){
+
+    return Object.keys(
+        currentFiles
+    ).find(
+        path=>
+            path
+            .toLowerCase()
+            .endsWith(".js")
+    );
+
+}
+
+
+function suggestFileName(code){
+
+    if(
+        looksLikeHTML(code)
+    )
+        return "page.html";
+
+    if(
+        looksLikeCSS(code)
+    )
+        return "styles.css";
+
+    if(
+        looksLikeJS(code)
+    )
+        return "app.js";
+
+    return "new-file.txt";
+
+}
+
+
+function uniqueFileName(path){
+
+    const dot =
+        path.lastIndexOf(".");
+
+    const base =
+        dot>=0
+        ? path.substring(0,dot)
+        : path;
+
+    const ext =
+        dot>=0
+        ? path.substring(dot)
+        : "";
+
+    let i=2;
+
+    let result =
+        base+i+ext;
+
+    while(
+        currentFiles[result]
+        !==undefined
+    ){
+
+        i++;
+
+        result =
+            base+i+ext;
+
+    }
+
+    return result;
+
+}
+
+
+function looksLikeFullHTML(text){
+
+    const lower =
+        text.toLowerCase();
+
+    return (
+        lower.includes("<!doctype html")
+        ||
+        (
+            lower.includes("<html")
+            &&
+            lower.includes("<body")
+            &&
+            lower.includes("<head")
+        )
+    );
+
+}
+
+
+function looksLikeHTML(text){
+
+    return /<([a-z]+)(\s|>)/i.test(
+        text
+    );
+
+}
+
+
+function looksLikeCSS(text){
+
+    return (
+        text.includes("{")
+        &&
+        (
+            text.includes(":")
+            ||
+            text.includes("--")
+        )
+    );
+
+}
+
+
+function looksLikeJS(text){
+
+    return (
+        text.includes("function")
+        ||
+        text.includes("=>")
+        ||
+        text.includes("document.")
+        ||
+        text.includes("console.")
+    );
+
+}
+
+
+function extractAIText(data){
+
+    if(
+        data?.choices?.[0]?.message?.content
+    ){
+
+        return data
+            .choices[0]
+            .message
+            .content;
+
+    }
+
+    if(
+        data?.choices?.[0]?.text
+    ){
+
+        return data
+            .choices[0]
+            .text;
+
+    }
+
+    if(
+        typeof data?.output_text==="string"
+    ){
+
+        return data.output_text;
+
+    }
+
+    if(
+        typeof data?.content==="string"
+    ){
+
+        return data.content;
+
+    }
+
+    if(
+        Array.isArray(data?.output)
+    ){
+
+        let text="";
+
+        data.output.forEach(
+            item=>{
+
+                if(
+                    typeof item?.content==="string"
+                ){
+
+                    text +=
+                        item.content;
+
+                }
+
+                if(
+                    Array.isArray(item?.content)
+                ){
+
+                    item.content.forEach(
+                        part=>{
+
+                            if(
+                                typeof part?.text==="string"
+                            )
+                                text +=
+                                    part.text;
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+        return text;
+
+    }
+
+    return "";
+
+}
+
+
+function cleanCode(text){
+
+    return String(text)
+
+        .replace(
+            /^```html\s*/i,
+            ""
+        )
+
+        .replace(
+            /^```css\s*/i,
+            ""
+        )
+
+        .replace(
+            /^```javascript\s*/i,
+            ""
+        )
+
+        .replace(
+            /^```js\s*/i,
+            ""
+        )
+
+        .replace(
+            /^```json\s*/i,
+            ""
+        )
+
+        .replace(
+            /^```\s*/i,
+            ""
+        )
+
+        .replace(
+            /\s*```$/i,
+            ""
+        )
+
+        .trim();
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+window.openSettings=function(){
+
+    loadSettings();
+
+    openModal(
+        "settingsModal"
+    );
+
+};
+
+
+function loadSettings(){
+
+    document
+        .getElementById("username")
+        .value =
+            localStorage.getItem(
+                "negm_username"
+            )
+            || "";
+
+    document
+        .getElementById("firebaseURL")
+        .value =
+            localStorage.getItem(
+                "negm_firebase_url"
+            )
+            ||
+            DEFAULT_DATABASE_URL;
+
+    document
+        .getElementById("aiApiUrl")
+        .value =
+            localStorage.getItem(
+                "negm_ai_url"
+            )
+            || "";
+
+    document
+        .getElementById("aiApiKey")
+        .value =
+            localStorage.getItem(
+                "negm_ai_key"
+            )
+            || "";
+
+    document
+        .getElementById("aiModel")
+        .value =
+            localStorage.getItem(
+                "negm_ai_model"
+            )
+            || "";
+
+}
+
+
+window.saveSettings=function(){
+
+    const firebaseURL =
+        document
+        .getElementById("firebaseURL")
+        .value
+        .trim();
+
+    localStorage.setItem(
+        "negm_username",
+        document
+        .getElementById("username")
+        .value
+        .trim()
+    );
+
+    localStorage.setItem(
+        "negm_firebase_url",
+        firebaseURL
+    );
+
+    localStorage.setItem(
+        "negm_ai_url",
+        document
+        .getElementById("aiApiUrl")
+        .value
+        .trim()
+    );
+
+    localStorage.setItem(
+        "negm_ai_key",
+        document
+        .getElementById("aiApiKey")
+        .value
+        .trim()
+    );
+
+    localStorage.setItem(
+        "negm_ai_model",
+        document
+        .getElementById("aiModel")
+        .value
+        .trim()
+    );
+
+    closeModal(
+        "settingsModal"
+    );
+
+    toast(
+        "⚙️ تم حفظ الإعدادات"
+    );
+
+};
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(id){
+
+    document
+        .getElementById(id)
+        .classList.add("show");
+
+}
+
+
+window.closeModal=function(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("show");
+
+};
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+window.toast=function(message){
+
+    const element =
+        document.getElementById(
+            "toast"
+        );
+
+    element.textContent=
+        message;
+
+    element.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        toastTimer
+    );
+
+    toastTimer =
+        setTimeout(
+            ()=>{
+                element.classList.remove(
+                    "show"
+                );
+            },
+            2800
+        );
+
+};
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function escapeHtml(text){
+
+    return String(text)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(text){
+
+    return String(text)
+        .replace(
+            /"/g,
+            "&quot;"
+        );
+
+}
+
+
+function normalizePath(path){
+
+    return String(path)
+        .replace(
+            /\\/g,
+            "/"
+        )
+        .replace(
+            /^\.\/+/,
+            ""
+        )
+        .replace(
+            /^\/+/,
+            ""
+        );
+
+}
+
+
+function getExtension(path){
+
+    const name =
+        String(path)
+        .split("/")
+        .pop();
+
+    const dot =
+        name.lastIndexOf(".");
+
+    if(dot===-1)
+        return "";
+
+    return name
+        .substring(dot+1)
+        .toLowerCase();
+
+}
+
+
+function isImageExtension(ext){
+
+    return [
+        "png",
+        "jpg",
+        "jpeg",
+        "webp",
+        "gif",
+        "svg",
+        "bmp",
+        "ico"
+    ].includes(
+        ext.toLowerCase()
+    );
+
+}
+
+
+function formatDate(timestamp){
+
+    if(!timestamp)
+        return "";
+
+    return new Date(timestamp)
+        .toLocaleString(
+            "ar-EG",
+            {
+                day:"2-digit",
+                month:"2-digit",
+                year:"numeric",
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL BACKDROP
+========================================================= */
+
+document
+.querySelectorAll(".overlay")
+.forEach(
+    overlay=>{
+
+        overlay.addEventListener(
+            "click",
+            event=>{
+
+                if(
+                    event.target===overlay
+                ){
+
+                    overlay.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RECEIVE CONSOLE
+========================================================= */
+
+window.addEventListener(
+    "message",
+    event=>{
+
+        if(!event.data)
+            return;
+
+        if(
+            event.data.type==="console"
+        ){
+
+            addConsole(
+                event.data.message,
+                event.data.level || "info"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DRAG & DROP FILES
+========================================================= */
+
+document.addEventListener(
+    "dragover",
+    event=>{
+        event.preventDefault();
+    }
+);
+
+
+document.addEventListener(
+    "drop",
+    async event=>{
+
+        event.preventDefault();
+
+        const files =
+            Array.from(
+                event.dataTransfer.files
+            );
+
+        if(files.length){
+
+            await processFiles(
+                files
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PUBLIC API
+========================================================= */
+
+window.NEGMCODELAB={
+
+    getProjects:
+        ()=>{
+            return projects;
+        },
+
+    getCurrentProject:
+        ()=>{
+            return projects[
+                currentProjectId
+            ];
+        },
+
+    getFiles:
+        ()=>{
+            return currentFiles;
+        },
+
+    getAssets:
+        ()=>{
+            return localImages;
+        },
+
+    save:
+        saveProject,
+
+    run:
+        runProject,
+
+    rename:
+        renameFile,
+
+    delete:
+        deleteFile
+
+};
+
+</script>
+
+</body>
+  </html>
